@@ -1,0 +1,28 @@
+Package: RoyAIapp
+Type: Package
+Title: Interactive Research Platform for Generalized Roy Models of Human-AI Complementarity
+Version: 0.2.0
+Authors@R: c(
+    person("Ibrahim", "Niankara", email = "Ibrahim.niankara@aau.ac.ae",
+           role = c("aut", "cre")),
+    person("BRASS Digital Lab", role = "fnd",
+           comment = "LLC registered in Burkina Faso, RCCM BF-OUA-01-2026-B13-02466; https://brassbe1982-bdlweb.share.connect.posit.cloud/"))
+Description: A Shiny application built on the 'RoyAI' package. It offers an
+    interactive simulator of the copula generalized Roy model (selection,
+    ATE/ATT/ATU/LATE, marginal treatment effects and earnings distributions),
+    estimation of Model A and Model B on simulated, example or uploaded data
+    with comparison of copula dependence families, labs that simulate and
+    estimate Model D (continuous AI-use intensity) and Model E (dynamic
+    selection with learning), and a browser for the stored
+    Monte Carlo and PIAAC results. The framework builds on Niankara et al. (2025)
+    <doi:10.1109/GCET68529.2025.11450624>.
+URL: https://github.com/brassbe1982/RoyAIapp
+BugReports: https://github.com/brassbe1982/RoyAIapp/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports: RoyAI (>= 0.2.0), shiny (>= 1.7.4), bslib (>= 0.6.0), ggplot2 (>= 3.4.0), DT, stats, utils
+Remotes: brassbe1982/RoyAI
+Suggests: testthat (>= 3.0.0), pkgload
+Config/testthat/edition: 3
+RoxygenNote: 7.3.1

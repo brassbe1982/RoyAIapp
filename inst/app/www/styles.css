@@ -1,0 +1,9 @@
+/* RoyAI app tweaks on top of the bslib theme */
+.bslib-value-box .value-box-value { font-variant-numeric: tabular-nums; }
+.bslib-value-box .value-box-title { font-weight: 600; letter-spacing: .02em; }
+.card-header { font-weight: 600; }
+.accordion-button { font-weight: 600; }
+.irs--shiny .irs-bar { background: #1F4E79; border-color: #1F4E79; }
+.irs--shiny .irs-single { background: #1F4E79; }
+table.dataTable td { font-variant-numeric: tabular-nums; }
+pre.shiny-text-output { max-height: 640px; font-size: .8rem; }

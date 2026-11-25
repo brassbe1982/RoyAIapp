@@ -1,0 +1,30 @@
+pkg_ver <- meta$Version
+if (is.null(pkg_ver)) pkg_ver <- "0.2.0"
+
+bibentry(
+  bibtype  = "InProceedings",
+  key      = "Niankara2025GCET",
+  header   = "To cite the peer-reviewed publication underlying RoyAIapp, please use:",
+  title    = "The Impact of Artificial Intelligence on Fresh Graduate Labor Demand: A Theoretical and Empirical Analysis with Industry and Firm Heterogeneity",
+  author   = c(person("Ibrahim", "Niankara"), person("Yahya", "Aljallad"),
+               person("Ons", "Soussi"), person("Kareem", "Maghrabi"),
+               person("Madheya", "Alkhyeli"), person("Sara", "Alghool")),
+  booktitle = "2025 Global Congress on Emerging Technologies (GCET)",
+  address  = "Lyon, France",
+  publisher = "IEEE",
+  year     = "2025",
+  doi      = "10.1109/GCET68529.2025.11450624",
+  url      = "https://ieeexplore.ieee.org/document/11450624",
+  note     = "Conference held 2-5 December 2025; added to IEEE Xplore 30 March 2026. Open version: https://brassbe1982-bdlweb.share.connect.posit.cloud/research/ai-graduate-labor-demand-agentic.html"
+)
+
+bibentry(
+  bibtype  = "Manual",
+  key      = "RoyAIapp",
+  header   = "To cite the RoyAIapp software, please use:",
+  title    = paste0("RoyAIapp: ", meta$Title),
+  author   = person("Ibrahim", "Niankara"),
+  organization = "BRASS Digital Lab",
+  year     = "2026",
+  note     = paste("R package version", pkg_ver)
+)

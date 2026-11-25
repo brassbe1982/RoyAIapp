@@ -1,0 +1,215 @@
+RoyAI first application: PIAAC Cycle 2 x O*NET AI exposure
+
+$n
+[1] 17045
+
+$by_country
+     
+         0    1    2
+  152 1543  277  242
+  203 2283  244  388
+  250 2578  469  472
+  376 2091  402  468
+  428 2581  563  461
+  616 1506  202  259
+
+$notes
+[1] "PIAAC variables used: id=SEQID, country=CNTRYID, weight=SPFWT0, earnings=EARNHRBONUSPPPC2, occupation=ISCO2C, gender=GENDER_R, schooling=YRSQUALC2, ict_work=ICTWORKC2, age=AGE_R, age_group=AGEG10LFS, pv_literacy=PVLIT1, pv_numeracy=PVNUM1, pv_aps=PVAPS1"
+[2] "AI exposure measure: aioe"                                                                                                                                                                                                                                    
+[3] "plausible value 1 used; repeat over PV1-PV10 and combine with Rubin's rules"                                                                                                                                                                                  
+[4] "17059 of 51179 respondents kept (valid earnings, matched occupation, earnings trimmed at 1.0% per tail within country)"                                                                                                                                       
+[5] "LIMITATION: adoption is a PROXY (high-exposure occupation x high within-country ICT use at work); it measures AI-ready work, not observed AI use"                                                                                                             
+[6] "Model B split by occupational complementarity (Pizzinelli et al. 2023 style)"                                                                                                                                                                                 
+[7] "ICT indices: valid skips (no ICT use) recoded to one unit below the observed minimum"                                                                                                                                                                         
+[8] "PIAAC Cycle 2 names confirmed against the OECD international codebook (2026-11-25)"                                                                                                                                                                           
+
+
+=== Model A (PV1 fit) ===
+RoyAI fit: Model A (binary AI adoption), generalized Roy, ml, dependence: gaussian 
+n = 17029 | regime sizes: 12582, 4447 | converged: TRUE 
+
+                 Estimate Std. Error z value Pr(>|z|)    
+sel:(Intercept)   -5.1894     0.1478  -35.12  < 1e-04 ***
+sel:skill_lit      0.2445     0.0137   17.85  < 1e-04 ***
+sel:schooling      0.1919     0.0052   37.27  < 1e-04 ***
+sel:age            0.0647     0.0065    9.99  < 1e-04 ***
+sel:I(age^2/100)  -0.0745     0.0077   -9.66  < 1e-04 ***
+sel:female        -0.0809     0.0228   -3.55 0.000390 ***
+sel:country203    -0.1677     0.0448   -3.75 0.000178 ***
+sel:country250     0.0754     0.0424    1.78 0.075177   .
+sel:country376     0.3328     0.0424    7.85  < 1e-04 ***
+sel:country428     0.1986     0.0414    4.79  < 1e-04 ***
+sel:country616     0.2428     0.0480    5.06  < 1e-04 ***
+sel:ict_home       0.2200     0.0106   20.79  < 1e-04 ***
+y0:(Intercept)     1.4920     0.0460   32.40  < 1e-04 ***
+y0:skill_lit       0.0360     0.0048    7.47  < 1e-04 ***
+y0:schooling       0.0157     0.0017    9.47  < 1e-04 ***
+y0:age             0.0234     0.0021   11.01  < 1e-04 ***
+y0:I(age^2/100)   -0.0230     0.0025   -9.05  < 1e-04 ***
+y0:female         -0.1641     0.0082  -20.10  < 1e-04 ***
+y0:country203      0.4275     0.0155   27.56  < 1e-04 ***
+y0:country250      0.7414     0.0150   49.56  < 1e-04 ***
+y0:country376      0.3819     0.0151   25.26  < 1e-04 ***
+y0:country428      0.1725     0.0147   11.74  < 1e-04 ***
+y0:country616      0.3642     0.0164   22.14  < 1e-04 ***
+y1:(Intercept)     1.5753     0.1687    9.34  < 1e-04 ***
+y1:skill_lit       0.0901     0.0099    9.09  < 1e-04 ***
+y1:schooling       0.0297     0.0056    5.29  < 1e-04 ***
+y1:age             0.0436     0.0044    9.86  < 1e-04 ***
+y1:I(age^2/100)   -0.0442     0.0052   -8.45  < 1e-04 ***
+y1:female         -0.2324     0.0132  -17.67  < 1e-04 ***
+y1:country203      0.1124     0.0265    4.24  < 1e-04 ***
+y1:country250      0.4379     0.0244   17.98  < 1e-04 ***
+y1:country376      0.2780     0.0251   11.08  < 1e-04 ***
+y1:country428      0.1246     0.0238    5.24  < 1e-04 ***
+y1:country616      0.0820     0.0275    2.98 0.002873  **
+sigma0             0.4680     0.0039  120.60  < 1e-04 ***
+sigma1             0.4314     0.0071   60.67  < 1e-04 ***
+rho0              -0.7705     0.0131  -58.70  < 1e-04 ***
+rho1              -0.2351     0.0794   -2.96 0.003079  **
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1
+
+log-likelihood: -16824.71  (df = 38 )
+Standard errors: analytic 
+
+=== Model A effects, Rubin's rules over 10 PVs ===
+             contrast         population  estimate         se
+1 ai_adopter vs no_ai          all (ATE) 0.5003951 0.04830176
+2 ai_adopter vs no_ai non-adopters (ATU) 0.3850838 0.06518039
+3 ai_adopter vs no_ai     adopters (ATT) 0.8180003 0.01585311
+RoyAI diagnostics
+=================
+Convergence: TRUE | max |score| = 1.00e-03 | min Hessian eigenvalue = 29.3 | condition = 6.66e+06
+No selection on unobservables (H0: rho0, rho1 = 0): Wald = 3448.75, df = 2, p = 0
+Kendall's tau (U0,UD), (U1,UD): -0.56, -0.151 
+Exclusion restrictions (ict_home): LR = 472.8, df = 1, p = 8.07e-105
+Overlap: 5.8% of observations with a regime probability outside [0.02, 0.98]
+             min   q05 median   q95   max
+no_ai      0.016 0.340  0.792 0.984 1.000
+ai_adopter 0.000 0.016  0.208 0.660 0.984
+
+Flags:
+ - 5.8% of observations have a regime probability below 0.02 or above 0.98: counterfactuals there are extrapolations; consider trimming. 
+
+	Likelihood-ratio test for nested Roy models
+
+data:  generalized/independence (restricted) vs generalized/gaussian (full)
+LR = 502.88, df = 2, p-value < 2.2e-16
+
+
+=== Robustness: GPT exposure ===
+             contrast         population  estimate         se
+1 ai_adopter vs no_ai          all (ATE) 0.4827281 0.05002205
+2 ai_adopter vs no_ai non-adopters (ATU) 0.3648605 0.06718617
+3 ai_adopter vs no_ai     adopters (ATT) 0.8140609 0.01549205
+
+=== Robustness: + 1-digit occupation effects (groups 1,2,3,4 ; n = 9311 ) ===
+             contrast         population  estimate         se
+1 ai_adopter vs no_ai          all (ATE) 0.4759797 0.03660919
+2 ai_adopter vs no_ai non-adopters (ATU) 0.2718924 0.06098270
+3 ai_adopter vs no_ai     adopters (ATT) 0.6987390 0.03304564
+  rho0   rho1 
+-0.736 -0.250 
+
+=== Model B (DMF two-step, bootstrap SEs) ===
+RoyAI fit: Model B (multinomial: human_only / ai_augmented / ai_dominant), twostep, correction: dmf 
+n = 17029 | regime sizes: 12582, 2157, 2290 | converged: TRUE 
+
+                  Estimate Std. Error z value Pr(>|z|)    
+sel1:(Intercept)  -12.4673     0.3966  -31.44  < 1e-04 ***
+sel1:skill_lit      0.3968     0.0392   10.12  < 1e-04 ***
+sel1:schooling      0.4788     0.0131   36.43  < 1e-04 ***
+sel1:age            0.1319     0.0196    6.72  < 1e-04 ***
+sel1:I(age^2/100)  -0.1388     0.0222   -6.25  < 1e-04 ***
+sel1:female        -0.4848     0.0464  -10.45  < 1e-04 ***
+sel1:country203    -0.8674     0.0975   -8.90  < 1e-04 ***
+sel1:country250     0.0496     0.0819    0.61  0.54505    
+sel1:country376     0.5342     0.0851    6.28  < 1e-04 ***
+sel1:country428     0.3792     0.0906    4.19  < 1e-04 ***
+sel1:country616     0.2484     0.0982    2.53  0.01144   *
+sel1:ict_home       0.4558     0.0230   19.82  < 1e-04 ***
+sel2:(Intercept)   -7.9518     0.3463  -22.97  < 1e-04 ***
+sel2:skill_lit      0.5181     0.0256   20.23  < 1e-04 ***
+sel2:schooling      0.2339     0.0123   19.02  < 1e-04 ***
+sel2:age            0.1051     0.0150    7.02  < 1e-04 ***
+sel2:I(age^2/100)  -0.1353     0.0184   -7.34  < 1e-04 ***
+sel2:female        -0.0319     0.0471   -0.68  0.49827    
+sel2:country203    -0.2555     0.0923   -2.77  0.00563  **
+sel2:country250    -0.0476     0.1116   -0.43  0.66974    
+sel2:country376     0.5133     0.0891    5.76  < 1e-04 ***
+sel2:country428     0.1983     0.0966    2.05  0.04021   *
+sel2:country616     0.4163     0.1013    4.11  < 1e-04 ***
+sel2:ict_home       0.4356     0.0239   18.20  < 1e-04 ***
+y0:(Intercept)      1.7884     0.0725   24.66  < 1e-04 ***
+y0:skill_lit        0.0481     0.0085    5.64  < 1e-04 ***
+y0:schooling       -0.0034     0.0031   -1.11  0.26779    
+y0:age              0.0203     0.0032    6.35  < 1e-04 ***
+y0:I(age^2/100)    -0.0219     0.0038   -5.75  < 1e-04 ***
+y0:female          -0.1291     0.0087  -14.81  < 1e-04 ***
+y0:country203       0.4803     0.0207   23.26  < 1e-04 ***
+y0:country250       0.7261     0.0223   32.58  < 1e-04 ***
+y0:country376       0.3860     0.0209   18.51  < 1e-04 ***
+y0:country428       0.1515     0.0187    8.09  < 1e-04 ***
+y0:country616       0.3830     0.0207   18.51  < 1e-04 ***
+y0:m0               0.0014     0.0538    0.03  0.97986    
+y0:m1              -1.1466     0.1149   -9.98  < 1e-04 ***
+y0:m2               0.2771     0.0887    3.12  0.00178  **
+y1:(Intercept)      0.8566     1.0822    0.79  0.42865    
+y1:skill_lit        0.0407     0.0244    1.67  0.09528   .
+y1:schooling        0.0442     0.0323    1.37  0.17163    
+y1:age              0.0532     0.0090    5.88  < 1e-04 ***
+y1:I(age^2/100)    -0.0496     0.0091   -5.45  < 1e-04 ***
+y1:female          -0.2455     0.0610   -4.02  < 1e-04 ***
+y1:country203      -0.0639     0.0871   -0.73  0.46290    
+y1:country250       0.3241     0.0444    7.29  < 1e-04 ***
+y1:country376       0.0645     0.0458    1.41  0.15919    
+y1:country428      -0.0547     0.0531   -1.03  0.30281    
+y1:country616      -0.0809     0.0559   -1.45  0.14781    
+y1:m0               0.1883     0.1377    1.37  0.17139    
+y1:m1               0.0954     0.1092    0.87  0.38235    
+y1:m2              -0.6981     0.5707   -1.22  0.22121    
+y2:(Intercept)      1.6906     0.3428    4.93  < 1e-04 ***
+y2:skill_lit        0.1114     0.0207    5.40  < 1e-04 ***
+y2:schooling        0.0140     0.0118    1.19  0.23521    
+y2:age              0.0373     0.0070    5.33  < 1e-04 ***
+y2:I(age^2/100)    -0.0396     0.0085   -4.68  < 1e-04 ***
+y2:female          -0.2181     0.0294   -7.41  < 1e-04 ***
+y2:country203       0.3053     0.0422    7.24  < 1e-04 ***
+y2:country250       0.5892     0.0336   17.51  < 1e-04 ***
+y2:country376       0.4753     0.0411   11.56  < 1e-04 ***
+y2:country428       0.3242     0.0377    8.61  < 1e-04 ***
+y2:country616       0.2585     0.0364    7.11  < 1e-04 ***
+y2:m0               0.2724     0.3432    0.79  0.42728    
+y2:m1              -0.3066     0.3930   -0.78  0.43526    
+y2:m2               0.0411     0.0359    1.14  0.25323    
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1
+Standard errors: bootstrap (B = 49) 
+                      contrast       population   estimate        se
+1   ai_augmented vs human_only              all  0.1579399 0.5213799
+2   ai_augmented vs human_only   S = human_only  0.1709554 0.4514883
+3   ai_augmented vs human_only S = ai_augmented  2.4694651 0.1690140
+4   ai_augmented vs human_only  S = ai_dominant -2.0922176 1.4623157
+5    ai_dominant vs human_only              all  0.4510755 0.4141424
+6    ai_dominant vs human_only   S = human_only  0.3858944 0.4273075
+7    ai_dominant vs human_only S = ai_augmented  1.7451880 0.7980395
+8    ai_dominant vs human_only  S = ai_dominant -0.4119624 0.2158376
+9  ai_dominant vs ai_augmented              all  0.2931356 0.6863474
+10 ai_dominant vs ai_augmented   S = human_only  0.2149390 0.6301329
+11 ai_dominant vs ai_augmented S = ai_augmented -0.7242772 0.8216258
+12 ai_dominant vs ai_augmented  S = ai_dominant  1.6802552 1.4746118
+RoyAI diagnostics
+=================
+Convergence: TRUE
+No selection on unobservables (H0: y0:m0, y0:m1, y0:m2, y1:m0, y1:m1, y1:m2, y2:m0, y2:m1, y2:m2 = 0): Wald = 438.73, df = 9, p = 7.36e-89
+Exclusion restrictions (ict_home): LR = 477.6, df = 2, p = 1.96e-104
+Overlap: 20.3% of observations with a regime probability outside [0.02, 0.98]
+               min   q05 median   q95   max
+human_only   0.013 0.302  0.810 0.979 1.000
+ai_augmented 0.000 0.004  0.066 0.420 0.856
+ai_dominant  0.000 0.014  0.115 0.315 0.553
+
+Flags:
+ - 20.3% of observations have a regime probability below 0.02 or above 0.98: counterfactuals there are extrapolations; consider trimming. 
+ - second-stage design is near-collinear in regime(s) human_only, ai_augmented, ai_dominant: correction terms are weakly identified (common with Dubin-McFadden terms); report effects with bootstrap SEs. 

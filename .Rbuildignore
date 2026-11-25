@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^dev$
+^README\.Rmd$
+^app\.R$
+^screenshots$
+^LICENSE\.md$
