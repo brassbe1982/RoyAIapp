@@ -78,7 +78,11 @@ test_that("degenerate boundary maxima are replaced or excluded from the AIC rank
   # Clayton DGP with strong selection on gains: the Frank multistart run from the
   # flipped tau climbs to tau1 -> 1 (non-PD Hessian) with a spuriously high logLik.
   s <- simulate_scenario(sim_params(family = "clayton", tau = c(-0.3, 0.7), n = 3000, seed = 1))
-  r <- fit_families(s$data, "y", "s", "x1", c("z1", "z2"), families = c("frank", "clayton"))
+  # the package warns that it skipped the irregular top run; that warning is the expected behaviour
+  expect_warning(
+    r <- fit_families(s$data, "y", "s", "x1", c("z1", "z2"), families = c("frank", "clayton")),
+    "irregular boundary point"
+  )
   expect_true(all(r$table$regular))
   expect_true(is_regular(r$fits$frank))
   expect_lt(abs(coef(r$fits$frank)[["tau1"]]), 0.95)

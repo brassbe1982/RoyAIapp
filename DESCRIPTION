@@ -1,7 +1,7 @@
 Package: RoyAIapp
 Type: Package
 Title: Interactive Research Platform for Generalized Roy Models of Human-AI Complementarity
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person("Ibrahim", "Niankara", email = "Ibrahim.niankara@aau.ac.ae",
            role = c("aut", "cre")),

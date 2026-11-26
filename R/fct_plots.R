@@ -91,8 +91,8 @@ plot_family_effects <- function(tab) {
   long$family <- factor(long$family, levels = rev(unique(family_label(tab$family))))
   ggplot2::ggplot(long, ggplot2::aes(estimate, family, colour = parameter)) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey60", linewidth = 0.3) +
-    ggplot2::geom_errorbarh(ggplot2::aes(xmin = estimate - 1.96 * se, xmax = estimate + 1.96 * se),
-                            height = 0.2, position = ggplot2::position_dodge(width = 0.5), na.rm = TRUE) +
+    ggplot2::geom_errorbar(ggplot2::aes(xmin = estimate - 1.96 * se, xmax = estimate + 1.96 * se),
+                            width = 0.2, orientation = "y", position = ggplot2::position_dodge(width = 0.5), na.rm = TRUE) +
     ggplot2::geom_point(size = 2.4, position = ggplot2::position_dodge(width = 0.5)) +
     ggplot2::scale_colour_manual(values = series_colours) +
     ggplot2::labs(x = "Estimate (95% CI)", y = NULL) + theme_royai()
@@ -146,8 +146,8 @@ plot_piaac_families <- function(cmp) {
                                  "occ2: + 2-digit ISCO effects (n = 8,366)"))
   ggplot2::ggplot(long, ggplot2::aes(estimate, family, colour = parameter)) +
     ggplot2::geom_vline(xintercept = 0, colour = "grey60", linewidth = 0.3) +
-    ggplot2::geom_errorbarh(ggplot2::aes(xmin = estimate - 1.96 * se, xmax = estimate + 1.96 * se),
-                            height = 0.2, position = ggplot2::position_dodge(width = 0.5), na.rm = TRUE) +
+    ggplot2::geom_errorbar(ggplot2::aes(xmin = estimate - 1.96 * se, xmax = estimate + 1.96 * se),
+                            width = 0.2, orientation = "y", position = ggplot2::position_dodge(width = 0.5), na.rm = TRUE) +
     ggplot2::geom_point(size = 2.4, position = ggplot2::position_dodge(width = 0.5)) +
     ggplot2::facet_wrap(~spec) + ggplot2::scale_colour_manual(values = series_colours) +
     ggplot2::labs(x = "Effect of AI-ready work on log hourly earnings", y = NULL) + theme_royai(12)
